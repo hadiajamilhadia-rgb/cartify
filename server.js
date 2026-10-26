@@ -12,8 +12,9 @@ import connectdb from './config/db.js';
 import getTime from "./date.js";
 import authRoutes from './routes/authRoutes.js';
 import orderRoutes from './routes/orderRoutes.js';
+import productRoutes from './routes/productRoutes.js'; // Product routes import
 
-// 3. Initialize Express App
+// 3. Initialize Express App FIRST (Yeh pehle hona zaroori hai)
 const app = express();
 
 // 4. Middlewares
@@ -30,9 +31,10 @@ connectdb();
 // 6. Execute Helper Functions
 getTime();
 
-// 7. Routes
+// 7. Routes (Yeh sab `const app = express();` ke baad honge)
 app.use('/api/auth', authRoutes);
 app.use('/api/orders', orderRoutes);
+app.use('/api/products', productRoutes); // Product route registered here correctly
 app.get('/', (req, res) => res.send('Welcome to the Home Page!'));
 
 // 8. URL Module Demo
@@ -47,11 +49,10 @@ console.log(qdata.month);
 console.log("CLAB_11");
 console.log("abc");
 
-// 9. Create HTTP Server FIRST
+// 9. Create HTTP Server & Listen on Port
 const server = http.createServer(app); 
+const PORT = process.env.PORT || 5002;
 
-// 10. THEN Listen on Port
-const PORT = process.env.PORT || 5001;
 server.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
