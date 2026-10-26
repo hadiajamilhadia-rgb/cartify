@@ -12,7 +12,9 @@ import connectdb from './config/db.js';
 import getTime from "./date.js";
 import authRoutes from './routes/authRoutes.js';
 import orderRoutes from './routes/orderRoutes.js';
-import productRoutes from './routes/productRoutes.js'; // Product routes import
+import productRoutes from './routes/productRoutes.js'; 
+import cartRoutes from './routes/cartRoutes.js';
+import catagoryRoutes from './routes/catagoryRoutes.js';// Product routes import
 
 // 3. Initialize Express App FIRST (Yeh pehle hona zaroori hai)
 const app = express();
@@ -34,7 +36,9 @@ getTime();
 // 7. Routes (Yeh sab `const app = express();` ke baad honge)
 app.use('/api/auth', authRoutes);
 app.use('/api/orders', orderRoutes);
-app.use('/api/products', productRoutes); // Product route registered here correctly
+app.use('/api/products', productRoutes); 
+app.use('/api/cart', cartRoutes);
+app.use('/api/catagories', catagoryRoutes);// Product route registered here correctly
 app.get('/', (req, res) => res.send('Welcome to the Home Page!'));
 
 // 8. URL Module Demo
